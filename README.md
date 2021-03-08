@@ -49,7 +49,7 @@ telling you that the connection is not secure.
 You must accept this for the time being.
 
 
-### Geberate a Certificate for Development
+### Generate a Certificate for Development
 
 Run this command to generate a personal certifciate.
 This is not much better than the ad-hoc version but at least it is not changing
