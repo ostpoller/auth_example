@@ -1,0 +1,10 @@
+connexion
+#connexion[swagger-ui]
+swagger-ui-bundle
+flask
+flask-login
+flask-migrate
+flask-sqlalchemy
+requests
+oauthlib
+pyOpenSSL

@@ -1,0 +1,106 @@
+openapi: 3.0.1
+
+info:
+  title: Example app with authentication mechanisms
+  description: 'This is a sample server to test authentication mechanisms.'
+  termsOfService: None
+  contact:
+    email: philipp.westphal@gmx.net
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+
+externalDocs:
+  description: Find out more about the author
+  url: https://philippwestphal.github.io
+
+servers:
+- url: /api
+
+tags:
+- name: tag
+  description: not sure yet what endpoints will be exposed here
+  externalDocs:
+    description: Find out more
+    url: https://philippwestphal.github.io
+
+paths:
+  /hello:
+    get:
+      tags:
+        - tag
+      summary: Get a Hello message
+      description: Pass in a query parameter `?message=..."`
+      operationId: auth.openapi_operation_id.hello
+      parameters:
+        - name: message
+          description: Some message.
+          in: query
+          required: true
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                properties:
+                  message:
+                    type: string
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+
+
+# from: https://editor.swagger.io
+#      security:
+#      - oauth2:
+#        - write:pets
+#        - read:pets
+#  securitySchemes:
+#    petstore_auth:
+#      type: oauth2
+#      flows:
+#        implicit:
+#          authorizationUrl: http://petstore.swagger.io/oauth/dialog
+#          scopes:
+#            write:pets: modify pets in your account
+#            read:pets: read your pets
+#      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_petstore_auth
+#      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_petstore_auth
+
+
+# from: https://github.com/zalando/connexion/issues/858
+#components:
+#  securitySchemes:
+#    oauth2:
+#      type: oauth2
+#      x-tokenInfoFunc: app.common.auth.oauth_token_info
+#      x-scopeValidateFunc: app.common.auth.oauth_validate_scope
+#      flows:
+#        authorizationCode:
+#          authorizationUrl: /oauth/authorize/
+#          tokenUrl: /oauth/token/
+#          refreshUrl: /oauth/token/
+#          scopes: {}
+
+#def oauth_token_info(access_token):
+#    token = Token.objects.get(access_token=access_token)
+#    return {'sub': token.user, 'scope': token.scope}
+#
+#
+#def oauth_validate_scope(required_scopes, token_scopes):
+#    try:
+#        token = require_oauth.acquire_token(scope=" ".join(required_scopes))
+#    except Exception:
+#        token = None
+#
+#    if token:
+#        return True
+#
+#    return False
